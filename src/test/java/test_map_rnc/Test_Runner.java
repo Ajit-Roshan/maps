@@ -20,7 +20,7 @@ public class Test_Runner extends Setups {
 		
 	}
 	
-	@Test(testName = "resultList", priority = 2)
+	@Test(priority = 2)
 	public void scrollResult() {
 
 		act= new Actions(dr);
@@ -35,8 +35,8 @@ public class Test_Runner extends Setups {
 		
 	}
 	
-	@Test(dependsOnMethods = "resultList", priority = 3)
-	public void getCompany_Name() {		
+	@Test(priority = 3)
+	public void gtCompany_Name() {		
 		
 		String res_comp_name= pf.getProperty("res_comp_name");
 		
@@ -49,7 +49,7 @@ public class Test_Runner extends Setups {
 	}
 	
 	@Test(priority = 4)
-	public void getCompany_Rating() {		
+	public void gtCompany_Rating() {		
 		
 		String res_comp_rating= pf.getProperty("res_com_rating");
 		
