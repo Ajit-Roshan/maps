@@ -33,8 +33,5 @@ public class Setups {
 		dr.close();
 	}
 	
-	public void sleep(int time) {
-		dr.manage().timeouts().implicitlyWait(Duration.ofSeconds(time));
-	}
 	
 }
