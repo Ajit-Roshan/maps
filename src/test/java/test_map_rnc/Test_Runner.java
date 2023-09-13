@@ -1,82 +1,87 @@
 package test_map_rnc;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.WheelInput;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import utils.Scroll;
 
 public class Test_Runner extends Scroll {
-
+	
+	WebDriverWait wait;
 	Test_Runner tn;
-	Set<String> comanyName;
 	
 	@Test(priority = 1)
 	public void search() {
-
-		WebElement searchBox = dr.findElement(By.id("searchboxinput"));
-
+		
+		wait= new WebDriverWait(dr, Duration.ofSeconds(10));
+		
+		WebElement searchBox= dr.findElement(By.id("searchboxinput"));
+		
 		wait.until(ExpectedConditions.elementToBeClickable(searchBox)).click();
-
-		searchBox.sendKeys("software company in ranchi", Keys.RETURN);
-
-	}
-
-	@Test(priority = 2)
-	public void resultList() {
-
-//		WebElement resList= dr.findElement(By.xpath("//div[@role='feed']"));
-
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@role='feed']")));
-		System.out.println("list is displayed");
 		
-		comanyName= new HashSet<String>();
-	}
-
-	@Test(priority = 3 , invocationCount = 200)
-	public void end_of_Search() {
-
-		System.out.println("in scroll");
-
-		WebElement scrollable = dr.findElement(By.xpath("//div[@role='feed']"));
-
-		wait.until(ExpectedConditions.elementToBeClickable((scrollable)));
-
-		System.out.println("scroll elemenrt is found");
-
-		Actions act = new Actions(dr);
-		WheelInput.ScrollOrigin s_org = WheelInput.ScrollOrigin.fromElement(scrollable);
-		act.scrollFromOrigin(s_org, 0, 200).perform();
+		searchBox.sendKeys("company in ranchi" , Keys.RETURN);
 		
-		List<WebElement> list_company= dr.findElements(By.xpath("//div[@class='NrDZNb']//div[2]"));		
-				
-		for (WebElement each_Comp: list_company) {
-			comanyName.add(each_Comp.getText());
-		}
-		
-
 	}
 	
-	@Test(priority = 4)
-	public void printList() {
-		int i= 1;
+	
+	@Test(priority = 2)
+	public void resultList() {
 		
-		for(String name: comanyName) {
-			System.out.println(i+" - "+name);
-			i++;
+//		WebElement resList= dr.findElement(By.xpath("//div[@role='feed']"));
+		
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@role='feed']")));
+		System.out.println("list is displayed");
+	}
+	
+	
+	@Test(priority = 3)
+	public void end_of_Search() {
+		
+		tn= new Test_Runner();
+		tn.scrollActions();
+		
+		WebElement end_Line_Search= dr.findElement(By.xpath("//span[@class='HlvSq']"));
+		
+		wait.until(ExpectedConditions.elementToBeClickable(end_Line_Search));
+		
+		boolean end_line_status= end_Line_Search.isDisplayed();
+		
+		if(end_line_status == false) {
+			
+			Assert.fail();
 		}
 		
 	}
-
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
