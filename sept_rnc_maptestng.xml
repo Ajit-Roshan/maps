@@ -3,7 +3,7 @@
 <suite name="Suite">
 
 <listeners>
-	<listener class-name="monitor.Action_Lstnr"></listener>
+	<listener class-name="monitor.Act_listnr"/>
 </listeners>
 
   <test thread-count="5" name="Test">

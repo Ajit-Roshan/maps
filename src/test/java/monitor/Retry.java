@@ -3,7 +3,9 @@ package monitor;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 
-public class Retry implements IRetryAnalyzer{
+import utils.Scroll;
+
+public class Retry extends Scroll implements IRetryAnalyzer{
 
 	private int start = 0;
 	private int end = 10;
@@ -16,6 +18,7 @@ public class Retry implements IRetryAnalyzer{
 		if(start < end) {
 			System.out.println("start > "+start);
 			start++ ;
+			
 			return true;
 		}else {
 			return false;			
