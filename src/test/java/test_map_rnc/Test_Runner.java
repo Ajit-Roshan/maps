@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.WheelInput;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import utils.Scroll;
@@ -41,7 +42,7 @@ public class Test_Runner extends Scroll {
 		comanyName= new HashSet<String>();
 	}
 
-	@Test(priority = 3 , invocationCount = 200)
+	@Test(priority = 3)
 	public void end_of_Search() {
 
 		System.out.println("in scroll");
@@ -54,7 +55,7 @@ public class Test_Runner extends Scroll {
 
 		Actions act = new Actions(dr);
 		WheelInput.ScrollOrigin s_org = WheelInput.ScrollOrigin.fromElement(scrollable);
-		act.scrollFromOrigin(s_org, 0, 200).perform();
+		act.scrollFromOrigin(s_org, 0, 170).perform();
 		
 		List<WebElement> list_company= dr.findElements(By.xpath("//div[@class='NrDZNb']//div[2]"));		
 				
@@ -62,6 +63,13 @@ public class Test_Runner extends Scroll {
 			comanyName.add(each_Comp.getText());
 		}
 		
+		try {
+			WebElement bottom= dr.findElement(By.xpath("//span[contains(text() , 'You')]"));
+			act.click().perform();
+		} catch (Exception e) {
+			// TODO: handle exception
+			Assert.fail();
+		}
 
 	}
 	
