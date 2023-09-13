@@ -1,6 +1,5 @@
 package test_map_rnc;
 
-import org.testng.annotations.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -11,8 +10,13 @@ public class Test_Runner extends Setups {
 	
 	Actions act;
 	
+	Test_Runner tes;
+	
 	@Test(priority = 1)
 	public void search() {
+		
+		tes= new Test_Runner();
+		tes.sleep(5);
 		
 		String searchBox= pf.getProperty("search_box_id");
 		String searchKeyword= pf.getProperty("search_for");
@@ -24,6 +28,8 @@ public class Test_Runner extends Setups {
 	@Test(priority = 2)
 	public void scrollResult() {
 
+		tes.sleep(3);
+		
 		act= new Actions(dr);
 		
 		String responseList= pf.getProperty("result_list");
@@ -39,6 +45,8 @@ public class Test_Runner extends Setups {
 	@Test(priority = 3)
 	public void gtCompany_Name() {		
 		
+		tes.sleep(2);
+		
 		String res_comp_name= pf.getProperty("res_comp_name");
 		
 		WebElement comp_name=dr.findElement(By.xpath(res_comp_name));
@@ -52,6 +60,8 @@ public class Test_Runner extends Setups {
 	@Test(priority = 4)
 	public void gtCompany_Rating() {		
 		
+		tes.sleep(2);
+		
 		String res_comp_rating= pf.getProperty("res_com_rating");
 		
 		WebElement comp_rating=dr.findElement(By.xpath(res_comp_rating));
@@ -64,6 +74,8 @@ public class Test_Runner extends Setups {
 	
 	@Test(priority = 5)
 	public void Rated_by_people() {		
+		
+		tes.sleep(2);
 		
 		String res_by_people= pf.getProperty("res_no_people");
 		

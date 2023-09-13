@@ -1,6 +1,7 @@
 package test_map_rnc;
 
 import java.io.FileInputStream;
+import java.time.Duration;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
@@ -30,6 +31,10 @@ public class Setups {
 	@AfterSuite
 	public void end() {
 		dr.close();
+	}
+	
+	public void sleep(int time) {
+		dr.manage().timeouts().implicitlyWait(Duration.ofSeconds(time));
 	}
 	
 }
