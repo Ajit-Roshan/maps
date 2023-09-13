@@ -12,8 +12,7 @@
 				<version>3.1.0</version>
 				<configuration>
 					<suiteXmlFiles>
-						<!--
-						<suiteXmlFile>src/main/java/testng.xml</suiteXmlFile>     -->
+						<suiteXmlFile>sept_rnc_maptestng.xml</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>
@@ -46,7 +45,7 @@
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
-			<version>4.12.0</version>
+			<version>4.10.0</version>
 		</dependency>
 
 		<!--
@@ -54,7 +53,7 @@
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-chrome-driver</artifactId>
-			<version>4.12.0</version>
+			<version>4.10.0</version>
 		</dependency>
 
 
