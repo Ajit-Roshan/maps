@@ -6,6 +6,8 @@ import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
@@ -13,6 +15,7 @@ public class Setups {
 
 	public Properties pf;
 	public WebDriver dr;
+	public WebDriverWait wait;
 	
 	
 	@BeforeSuite
@@ -21,16 +24,18 @@ public class Setups {
 		pf= new Properties();
 		pf.load(new FileInputStream("src/test/resources/utils/requrement.properties"));
 		
-		dr= new ChromeDriver();
+		dr= new FirefoxDriver();
 		dr.manage().window().maximize();
 		
 		dr.get(pf.getProperty("url"));
-
+		
+		wait= new WebDriverWait(dr, Duration.ofSeconds(20000));
 	}
 	
 	@AfterSuite
 	public void end() {
-		dr.close();
+//		dr.close();
+		System.out.println("cosing");
 	}
 	
 	
