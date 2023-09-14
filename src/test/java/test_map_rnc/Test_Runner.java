@@ -1,6 +1,7 @@
 package test_map_rnc;
 
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -39,7 +40,7 @@ public class Test_Runner extends Scroll {
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@role='feed']")));
 		System.out.println("list is displayed");
 		
-		comanyName= new HashSet<String>();
+		comanyName= new LinkedHashSet<String>();
 	}
 
 	@Test(priority = 3)
@@ -55,23 +56,21 @@ public class Test_Runner extends Scroll {
 
 		Actions act = new Actions(dr);
 		WheelInput.ScrollOrigin s_org = WheelInput.ScrollOrigin.fromElement(scrollable);
-		act.scrollFromOrigin(s_org, 0, 170).perform();
+		act.scrollFromOrigin(s_org, 0, 190).perform();
 		
 		WebElement res_Parent_Card= dr.findElement(By.xpath("//div[@class='UaQhfb fontBodyMedium']"));
-		
-		
 		
 //		List<WebElement> list_company= dr.findElements(By.xpath("//div[@class='NrDZNb']//div[2]"));		
 
 		List<WebElement> list_company= res_Parent_Card.findElements(By.xpath("//div[@class='NrDZNb']//div[2]"));		
 				
 		for (WebElement each_Comp: list_company) {
-			comanyName.add(each_Comp.getText());
+				comanyName.add(each_Comp.getText());
 		}
 		
 		try {
 			WebElement bottom= dr.findElement(By.xpath("//span[contains(text() , 'You')]"));
-			act.click().perform();
+			act.moveToElement(bottom).build().perform();
 			
 			System.out.println("got text > "+bottom.getText());
 		} catch (Exception e) {
