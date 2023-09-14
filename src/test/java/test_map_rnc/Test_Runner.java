@@ -27,7 +27,7 @@ public class Test_Runner extends Scroll {
 
 		wait.until(ExpectedConditions.elementToBeClickable(searchBox)).click();
 
-		searchBox.sendKeys("software company in ranchi", Keys.RETURN);
+		searchBox.sendKeys("software company in ranchi", Keys.ENTER);
 
 	}
 
@@ -57,7 +57,13 @@ public class Test_Runner extends Scroll {
 		WheelInput.ScrollOrigin s_org = WheelInput.ScrollOrigin.fromElement(scrollable);
 		act.scrollFromOrigin(s_org, 0, 170).perform();
 		
-		List<WebElement> list_company= dr.findElements(By.xpath("//div[@class='NrDZNb']//div[2]"));		
+		WebElement res_Parent_Card= dr.findElement(By.xpath("//div[@class='UaQhfb fontBodyMedium']"));
+		
+		
+		
+//		List<WebElement> list_company= dr.findElements(By.xpath("//div[@class='NrDZNb']//div[2]"));		
+
+		List<WebElement> list_company= res_Parent_Card.findElements(By.xpath("//div[@class='NrDZNb']//div[2]"));		
 				
 		for (WebElement each_Comp: list_company) {
 			comanyName.add(each_Comp.getText());
@@ -66,6 +72,8 @@ public class Test_Runner extends Scroll {
 		try {
 			WebElement bottom= dr.findElement(By.xpath("//span[contains(text() , 'You')]"));
 			act.click().perform();
+			
+			System.out.println("got text > "+bottom.getText());
 		} catch (Exception e) {
 			// TODO: handle exception
 			Assert.fail();
