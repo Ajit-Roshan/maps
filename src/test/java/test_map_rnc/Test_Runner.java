@@ -1,6 +1,7 @@
 package test_map_rnc;
 
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -10,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.WheelInput;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import utils.Scroll;
@@ -26,7 +28,7 @@ public class Test_Runner extends Scroll {
 
 		wait.until(ExpectedConditions.elementToBeClickable(searchBox)).click();
 
-		searchBox.sendKeys("software company in ranchi", Keys.RETURN);
+		searchBox.sendKeys("software company in ranchi", Keys.ENTER);
 
 	}
 
@@ -38,10 +40,10 @@ public class Test_Runner extends Scroll {
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@role='feed']")));
 		System.out.println("list is displayed");
 		
-		comanyName= new HashSet<String>();
+		comanyName= new LinkedHashSet<String>();
 	}
 
-	@Test(priority = 3 , invocationCount = 200)
+	@Test(priority = 3)
 	public void end_of_Search() {
 
 		System.out.println("in scroll");
@@ -54,14 +56,27 @@ public class Test_Runner extends Scroll {
 
 		Actions act = new Actions(dr);
 		WheelInput.ScrollOrigin s_org = WheelInput.ScrollOrigin.fromElement(scrollable);
-		act.scrollFromOrigin(s_org, 0, 200).perform();
+		act.scrollFromOrigin(s_org, 0, 190).perform();
 		
-		List<WebElement> list_company= dr.findElements(By.xpath("//div[@class='NrDZNb']//div[2]"));		
+		WebElement res_Parent_Card= dr.findElement(By.xpath("//div[@class='UaQhfb fontBodyMedium']"));
+		
+//		List<WebElement> list_company= dr.findElements(By.xpath("//div[@class='NrDZNb']//div[2]"));		
+
+		List<WebElement> list_company= res_Parent_Card.findElements(By.xpath("//div[@class='NrDZNb']//div[2]"));		
 				
 		for (WebElement each_Comp: list_company) {
-			comanyName.add(each_Comp.getText());
+				comanyName.add(each_Comp.getText());
 		}
 		
+		try {
+			WebElement bottom= dr.findElement(By.xpath("//span[contains(text() , 'You')]"));
+			act.moveToElement(bottom).build().perform();
+			
+			System.out.println("got text > "+bottom.getText());
+		} catch (Exception e) {
+			// TODO: handle exception
+			Assert.fail();
+		}
 
 	}
 	
