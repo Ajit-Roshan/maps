@@ -62,11 +62,11 @@ public class Test_Runner extends Scroll {
 		
 //		List<WebElement> list_company= dr.findElements(By.xpath("//div[@class='NrDZNb']//div[2]"));		
 
-		List<WebElement> list_company= res_Parent_Card.findElements(By.xpath("//div[@class='NrDZNb']//div[2]"));		
-				
-		for (WebElement each_Comp: list_company) {
-				comanyName.add(each_Comp.getText());
-		}
+//		List<WebElement> list_company= res_Parent_Card.findElements(By.xpath("//div[@class='NrDZNb']//div[2]"));		
+//				
+//		for (WebElement each_Comp: list_company) {
+//				comanyName.add(each_Comp.getText());
+//		}
 		
 		try {
 			WebElement bottom= dr.findElement(By.xpath("//span[contains(text() , 'You')]"));
