@@ -34,7 +34,7 @@ public class Test_Runner extends Setups {
 	public void resultList() {
 
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@role='feed']")));
-		System.out.println("list is displayed");
+//		System.out.println("list is displayed");
 
 		c_n_r_v= 	new HashSet<String>();
 	}
@@ -75,7 +75,7 @@ public class Test_Runner extends Setups {
 			WebElement bottom= dr.findElement(By.xpath(".//span[contains(text(),  'end of the list' )]"));
 			act.moveToElement(bottom).build().perform();
 
-			System.out.println("got text > "+bottom.getText());
+//			System.out.println("got text > "+bottom.getText());
 		} catch (Exception e) {
 			// TODO: handle exception
 			Assert.fail();
@@ -83,7 +83,7 @@ public class Test_Runner extends Setups {
 	}
 	
 	@Test(priority = 5)
-	public void folter_Result() {
+	public void filter_Result() {
 		
 		for (String dataSet : c_n_r_v ) {
 //			System.out.println("a > "+dataSet);
@@ -129,7 +129,8 @@ public class Test_Runner extends Setups {
 			
 			if((t_Votes >= baseVoter) && (t_Rating >= baseRating)) {
 //				System.out.println("152");
-				System.out.println("result name : "+cName);
+				System.out.println("");
+				System.out.println("result name :: "+cName);
 				System.out.println("");
 			}
 

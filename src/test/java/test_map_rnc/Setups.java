@@ -20,7 +20,7 @@ public class Setups {
 	
 	public String searchData;
 	
-	public Scanner sc;
+//	public Scanner sc;
 	
 	public int baseRating;
 	public int baseVoter;
@@ -28,21 +28,26 @@ public class Setups {
 	@BeforeSuite
 	public void start() throws Throwable {
 		
-		sc= new Scanner(System.in);
-		System.out.print("what you want to search for in not specific general stuff : ");
+//		sc= new Scanner(System.in);
 
-		searchData= sc.nextLine();
 		
-		////
-		System.out.print("eneter the base Rating : ");
-		baseRating= sc.nextInt();
+//		System.out.print("what you want to search for in not specific general stuff : ");
+//		searchData= sc.nextLine();
+//		
+//		System.out.print("eneter the base Rating : ");
+//		baseRating= sc.nextInt();
+//		
+//		System.out.print("enter base voter : ");
+//		baseVoter= sc.nextInt();
 		
-		System.out.print("enter base voter : ");
-		baseVoter= sc.nextInt();
-		/////
 		
 		pf= new Properties();
 		pf.load(new FileInputStream("src/test/resources/utils/requrement.properties"));
+		
+		
+		searchData= pf.getProperty("searchData_from_proFile");
+		baseRating= Integer.parseInt(pf.getProperty("baseRating_from_proFile"));
+		baseVoter= Integer.parseInt(pf.getProperty("baseVoter_from_proFile"));
 		
 		dr= new FirefoxDriver();
 		dr.manage().window().maximize();
@@ -54,8 +59,8 @@ public class Setups {
 	
 	@AfterSuite
 	public void end() {
-//		dr.close();
-		System.out.println("cosing");
+		dr.close();
+//		System.out.println("cosing");
 	}
 	
 	
