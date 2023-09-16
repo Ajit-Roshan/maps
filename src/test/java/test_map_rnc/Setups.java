@@ -3,6 +3,7 @@ package test_map_rnc;
 import java.io.FileInputStream;
 import java.time.Duration;
 import java.util.Properties;
+import java.util.Scanner;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,10 +18,29 @@ public class Setups {
 	public WebDriver dr;
 	public WebDriverWait wait;
 	
+	public String searchData;
+	
+	public Scanner sc;
+	
+	public int baseRating;
+	public int baseVoter;
 	
 	@BeforeSuite
 	public void start() throws Throwable {
+		
+		sc= new Scanner(System.in);
+		System.out.print("what you want to search for in not specific general stuff : ");
 
+		searchData= sc.nextLine();
+		
+		////
+		System.out.print("eneter the base Rating : ");
+		baseRating= sc.nextInt();
+		
+		System.out.print("enter base voter : ");
+		baseVoter= sc.nextInt();
+		/////
+		
 		pf= new Properties();
 		pf.load(new FileInputStream("src/test/resources/utils/requrement.properties"));
 		

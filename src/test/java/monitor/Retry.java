@@ -3,12 +3,10 @@ package monitor;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 
-import utils.Scroll;
-
-public class Retry extends Scroll implements IRetryAnalyzer{
+public class Retry implements IRetryAnalyzer{
 
 	private int start = 0;
-	private int end = 150;
+	private int end = 190;
 	
 	
 	@Override
@@ -16,11 +14,11 @@ public class Retry extends Scroll implements IRetryAnalyzer{
 		// TODO Auto-generated method stub
 		
 		if(start < end) {
-			System.out.println("start > "+start);
+//			System.out.println("start > "+start);
 			start++ ;
 			
 			try {
-				Thread.sleep(1090);
+				Thread.sleep(1020);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
